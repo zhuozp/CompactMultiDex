@@ -1,0 +1,2 @@
+# ComPactMultiDex
+针对MultiDex的补充优化、支持多线程加载多dex包、支持多进程dexopt、支持解压抽取dex时可以不进行zip压缩
