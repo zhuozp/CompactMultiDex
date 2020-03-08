@@ -91,3 +91,4 @@ public class DemoApplication extends Application {
 #### 参考文献
 1. https://cloud.tencent.com/developer/article/1143820
 2. http://www.freesion.com/article/4649179258/
+3. https://www.jianshu.com/p/51365a2277de
