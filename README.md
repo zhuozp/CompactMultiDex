@@ -3,12 +3,28 @@
 
 ### 接入步骤
 
-1. build.gradle配置
+1. build.gradle配置，不再需要引用官方的MultiDex库
+```
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+
+dependencies {
+	        implementation 'com.github.zhuozp:ComPactMultiDex:v1.0.0'
+	}
+ 
+ defaultConfig {
+        // 加入multiDexEnabled允许多dex打包
+        multiDexEnabled true
+        multiDexKeepFile file('maindexlist.txt')
+    }
 ```
 
-```
+2. 创建mianDexList.txt文件（同工程build.gradle同目录），查看路径下buid/intermediates/legacy_multidex_main_dex_list/release/mainDexList.txt, 若没有ComPactMultiDex相关的类，则加入下面的类到创建的mianDexList.txt文件中，主要是为了确保主dex有包含到
 
-2. 查看路径下buid/intermediates/legacy_multidex_main_dex_list/release/mainDexList.txt, 若没有ComPactMultiDex相关的类，则加入下面的类，主要是为了确保主dex有包含到
 ```
 com/gibbon/compactmultidex/ConcurrentMultiDexExtractor$ExtractCallable.class
 com/gibbon/compactmultidex/ConcurrentMultiDexExtractor$ZipEntryGroup.class
