@@ -87,3 +87,7 @@ public class DemoApplication extends Application {
         
     </application>
 ```
+
+#### 参考文献
+1. https://cloud.tencent.com/developer/article/1143820
+2. http://www.freesion.com/article/4649179258/
