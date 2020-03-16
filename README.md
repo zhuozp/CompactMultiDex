@@ -74,6 +74,7 @@ public class DemoApplication extends Application {
     }
 }
 
+// 优化选项如下
 /**
      * 不进行优化，同原来的
      * */
