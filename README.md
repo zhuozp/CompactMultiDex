@@ -6,11 +6,11 @@
 1. build.gradle配置，不再需要引用官方的MultiDex库
 ```
 allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
 	}
+}
 
 dependencies {
 	        implementation 'com.github.zhuozp:ComPactMultiDex:v1.0.0'
@@ -73,7 +73,44 @@ public class DemoApplication extends Application {
         MultiDex.install(this，？);
     }
 }
+
+/**
+     * 不进行优化，同原来的
+     * */
+    public static final int FLAG_NOT_COMPACT = 0 ;
+
+    /**
+     * 并发抽取dex
+     * */
+    public static final int FLAG_EXTRACT_CONCURRENT = 1;
+
+    /**
+     * 并发加载opt dex以及dexopt
+     * */
+    public static final int FLAG_LOAD_OPT_AND_DEX_CONCURRENT = 1 << 1;
+
+    /**
+     * 解压抽取的class.dex不进行zip压缩，直接解压生成dex
+     * */
+    public static final int FLAG_EXTRACT_RAW_DEX_NOT_ZIP = 1 << 2;
+
+    /**
+     * 并发校验本地抽取出的dex的crc验证
+     * */
+    public static final int FLAG_EXTRACT_TO_RAW_DEX_CONCURRENT_CRC = 1 << 3;
+
+    /**
+     * 本地dex不做crc验证、只做apk验证
+     * */
+    public static final int FLAG_NOT_DEX_CRC = 1 << 4;
+
+    /**
+     * 所有优化点一起进行
+     * */
+    public static final int FLAG_ALL_OPT = FLAG_EXTRACT_CONCURRENT | FLAG_LOAD_OPT_AND_DEX_CONCURRENT | FLAG_EXTRACT_RAW_DEX_NOT_ZIP |
+            FLAG_EXTRACT_TO_RAW_DEX_CONCURRENT_CRC | FLAG_NOT_DEX_CRC;
 ```
+
 或AndroidManifest.xml文件中修改application如下
 ```
 <application
